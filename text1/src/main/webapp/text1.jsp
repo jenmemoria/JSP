@@ -16,6 +16,8 @@
 <%
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyy년 MM월 dd일 a hh시 mm분 ss초");
 	String now = sdf.format(new Date());
+	
+	out.println("<h3>지금은" + now + "입니다</h3>");
 %>
 <h3>지금은 <%=now %>입니다</h3>
 

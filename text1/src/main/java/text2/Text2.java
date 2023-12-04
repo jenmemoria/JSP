@@ -1,6 +1,7 @@
 package text2;
 
-import java.io.IOException;
+// directive
+import java.io.IOException;		
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -12,15 +13,15 @@ import javax.servlet.http.HttpServletResponse;
 
 public class Text2 extends HttpServlet{
 	
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;	// declaration
 
-	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	@Override	// Server에서 실행될 프로그램의 service함수는 역할상 main함수와 같다. (scriptlet)
+	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd a hh:mm:ss");
 		String now = sdf.format(new Date());
 		
-		request.setCharacterEncoding("UTF-8");
+		request.setCharacterEncoding("UTF-8");	 // "" + ob + "" => expression
 		response.setCharacterEncoding("UTF-8");
 		
 		PrintWriter pw = response.getWriter();
