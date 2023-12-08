@@ -1,0 +1,5 @@
+Java -> JS (O)
+JS -> Java (X)
+이걸 되게 하기 위해서
+JS(AJAX) -> request to Server
+자바 스크립트에 있는 값을 서버에 요청

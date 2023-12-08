@@ -1,0 +1,53 @@
+1) 단일 데이터 자료형 정하기
+- 클래스 작성 (DTO)
+- 테이블 작성 (생략)
+
+2) 대문 페이지 화면 구현
+- 링크 작성
+- 요소 배치
+
+3) 공통 요소 작성 및 구현
+
+4) 각 페이지 별 기능 및 화면 구현
+
+5) 작동 테스트
+
+add-action.jsp	파라미터를 전달받아서 리스트에 추가하는 작업
+add-form.jsp	입력화면 보여주기
+delete.jsp	파라미터를 전달받아서 리스트에서 이름이 일치하는 객체를 삭제하는 작업
+index.jsp	대문페이지를 보여주기
+list.jsp	내장객체에서 attribute를 불러와서 리스트를 포워딩으로 넘기는 작업
+list-show.jsp	넘어온 attribute의 내용을 화면에 보여주기 (반복문)
+view.jsp	내장객체에서 attribute를 불러와서 단일객체를 포워딩으로 넘기는 작업
+view-show.jsp	넘어온 attribute의 내요을 화면에 보여주기 (반복문 없음)
+
+link vs redirect
+redirect는 클릭 안 하고 강제로 이동
+redirect는 작업이 다 끝나서 보여주기 (목록이든 단일객체든)까지 하는 아이들
+
+7) 기능별 연계 분석 (3단계로 나눠서 볼 수 있다.)
+
+	초기화면		불러오기 및 추가/삭제			보여주기/페이지 이동
+대문	index.jsp		
+
+목록			list.jsp		(포워드) 	list-show.jsp
+
+추가	add-form.jsp	add-action.jsp			리다이렉트 -> 조회
+
+조회			view.jsp		(포워드)	view-show.jsp
+
+삭제			delete.jsp			리다이렉트 -> 목록
+
+
+add-action.jsp
+add-form.jsp
+delete.jsp
+index.jsp
+list.jsp
+list-show.jsp
+view.jsp
+view-show.jsp
+
+요청을 하는 태그
+a랑 form
+
