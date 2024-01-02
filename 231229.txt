@@ -1,0 +1,38 @@
+1. employees의 department_name은 not null
+2. 직원 테이블의 부서 이름은 부서테이블 참조
+3. 따라서, 등록되지 않은 부서이름으로는 직원을 추가할 수 없다.
+	=> 등록된 부서에 한해서만 직원 추가 가능.
+	=> 먼저 부서부터 등록하고 직원을 추가한다.
+
+(먼저 생긴)참조 받은 테이블이 부모 테이블
+부모 테이블이 먼저 생겨야 자식 테이블에 추가할 수 있다.
+외래키 제약조건을 걸 때, 보통 not null을 거는 편.
+
+ex) 상품과 매출 / 게시글과 댓글 / 영상과 좋아요
+
+테이블을 두 개로 나눠서 외래키를 이용해 참조하는 이유
+: 불필요한 정보를 조회 안하고, 내가 필요한 정보만 조회하기 위해서
+
+
+----------------------------------------------------------------------------
+회원제 게시판. 로그인하지 않으면 게시글을 작성할 수 없다.
+모든 게시글은 작성자로 가입된 회원을 참조해야 한다.
+
+[Member]
+- idx		number		primary key,
+- userid	varchar2(100)	unique not null,
+- userpw	varchar2(500)	not null,
+- username
+- email
+- gender
+
+[Board]
+- idx		number		primary key,
+- title		varchar2(500)	not null,
+- writer	varchar2(100)	not null,
+- content	varchar2(4000)	not null,
+- writeDate	date		default sysdate
+
+constraint board_member_fk
+foreign key (writer)
+references member(userid)

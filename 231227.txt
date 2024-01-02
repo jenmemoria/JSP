@@ -1,0 +1,36 @@
+주소창을 통해서 전달하는 건 크기의 제한
+
+주소창을 통해서 전달 => 제출을 누르면 주소창에 입력값이 나온다.
+GET방식으로는 파일 전송을 할 수가 없다.
+물음표를 안 쓴다는 건 쿼리스트링으로 전달 ㄴㄴ
+
+Query : 질의
+GET (문서를 받고 싶다)
+GET (?query=아이유)
+
+POST(봉투에 담아서 보낸다)
+    (받는게 목적이 아님)
+    (보내는게 주 목적이다)
+
+1) 데이터 모델링
+TABLE : MEMBER
+- USERID 	(PK)
+- USERPW 	(500, NOT NULL)
+- USERNAME	(500, NOT NULL)
+- GENDER	(100, check in ('남성', '여성'))
+- EMAIL		(100, NOT NULL)
+
+2) 기능 구상 - 각 action 페이지는 POST로 처리
+- 회원가입		join.jsp, join-action.jsp	insert
+- 회원목록		list.jsp			select
+- 로그인		login.jsp, login-action.jsp	select
+- 정보수정		modify.jsp, modify-action.jsp	update
+- 탈퇴		delete.jsp			delete
+- 로그아웃		logout.jsp			-
+
+목록 <a href="list.jsp">		-> <a href-="수정, 탈퇴">
+추가 <a href="join.jsp">		-> <form action="join-action.jsp"> 	-> <c:redirect url="list.jsp">
+로그인 <a href="login.jsp">	-> <from action="login-action.jsp">	-> <c:redirect url="/" />
+로그아웃 <a href="logout.jsp">	-> <c:redirect url="/" />
+
+3) 기능에 필요한 DAO를 작성 (EL, JSTL, DBCP, Singleton)
