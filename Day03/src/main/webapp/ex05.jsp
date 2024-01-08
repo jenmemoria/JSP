@@ -60,6 +60,7 @@
 	test2.setStoreName("굽네치킨 광안점");
 	
 	test4.sort(null);
+	
 	// Attribute는 개발자가 넣을 수 있는 거자나
 	request.setAttribute("test1", test1);	// 왼쪽에는 꺼내거나 지우고 싶은 이름
 	request.setAttribute("test2", test2);	

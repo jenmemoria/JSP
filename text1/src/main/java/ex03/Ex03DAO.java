@@ -76,7 +76,7 @@ public class Ex03DAO {
 				
 			}
 		} catch (ClassNotFoundException | SQLException e) {
-			
+			e.printStackTrace();
 		} finally {
 			close();
 		}

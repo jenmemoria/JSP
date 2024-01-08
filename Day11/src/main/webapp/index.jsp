@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="header.jsp" %>
+<%@ include file="header.jsp"  %>
 
 <section>
 <div class="sb">
@@ -38,16 +38,38 @@
 					${dto.artist_name}</td>
 				<td><img src="album_img/${dto.album_img }" height="50">
 					${dto.album_name }</td>
-				<td><a href="view.jsp?id=${dto.name }">${dto.name }</a></td>
+				<td><a href="view.jsp?id=${dto.id }">${dto.name }</a></td>
 				<td>${dto.playTime }</td>
 				<td>
 					<a href="modify.jsp?id=${dto.id }"><button>수정</button></a>
-					<a href="delete.jsp?id=${dto.id }"><button>삭제</button></a>
+					<button class="deleteBtn" itemId="${dto.id }">삭제</button> <!-- id는 고유 식별이라서 class를 쓴다. html로 구현될 때는 여러개. -->
+					<!-- id와 class 개념 잘 구분하기. -->
 				</td>
 			</tr>
 		</c:forEach>
 	</tbody>
 </table>
 </section>
+
+<script>
+	// 삭제할 때 사용할 주소 (문자열)
+	const url = 'delete.jsp?id='
+			
+	// 문서 안에 있는 모든 삭제 버튼(클래스가 deleteBtn인 모든 요소)
+	const deleteBtnList = document.querySelectorAll('.deleteBtn')
+	
+	// 버튼의 개수만큼 반복문 실행
+	for(let i = 0; i < deleteBtnList.length; i++){
+		const btn = deleteBtnList[i]	// [i]번째 요소를 btn에 저장
+		btn.onclick = function(event){	// btn을 클릭하면 실행되는 함수 정의
+			const id = event.target.getAttribute('itemId')	// 클릭 대상의 itemId 가져오기
+			const flag = confirm(id + ' : 정말 삭제하시겠습니까')	// 물어보기
+			if(flag){						// 확인버튼을 클릭하면
+				location.href = url + id		// 지정한 주소로 이동시킨다.
+			}
+		}
+	}
+
+</script>
 </body>
 </html>

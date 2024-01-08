@@ -89,11 +89,11 @@
 			</tr>
 		</thead>
 		<tbody>
-			<%
+			<% // session은 사용자한테 알림을 보낼 때, appication은 전체 싹다 공공으로 보낼 때 생각
 		List<FoodDTO> list = (List<FoodDTO>) application.getAttribute("list");
 		for (int i = 0; list != null && i < list.size(); i++) {
 			FoodDTO dto = list.get(i);
-		%>
+		--%>
 		<tr>
 			<td><img src="category/<%=dto.getCategory()%>"></td>
 			<td><%=dto.getStoreName()%></td>
@@ -104,6 +104,7 @@
 		</tbody>
 	</table>
 </div>
+
 
 </body>
 </html>

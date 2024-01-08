@@ -11,7 +11,7 @@
 <h1>ex04-form.jsp</h1>
 <hr>
 
-<form action="ex04-action.jsp">
+<form action="ex04-action.js`p">
 	<p><input type="text" name="storeName" placeholder="식당이름" required></p>
 	<p><input type="text" name="menuName" placeholder="메뉴이름" required></p>
 	<p>
