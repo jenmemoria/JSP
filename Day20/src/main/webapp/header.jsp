@@ -79,6 +79,9 @@
 		font-weight: bold;
 		color: red;
 	}
+	.center {
+		text-align: center;
+	}
 </style>
 </head>
 <body>

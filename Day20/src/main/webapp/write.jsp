@@ -2,6 +2,12 @@
     pageEncoding="UTF-8"%>
 <%@ include file="header.jsp" %>
 
+<c:if test="${empty login }">
+	<script>
+		alert('먼저 로그인 후에 게시글을 작성할 수 있습니다.')
+		history.go(-1)
+	</script>
+</c:if>
 <main>
 	<h3>게시글 작성</h3>
 	<form method="POST" action="write-action.jsp" enctype="multipart/form-data">

@@ -20,23 +20,24 @@ public class Paging {
 	}
 	
 	private Paging(int page, int boardCount) {	// 전체 몇 페이지에서 몇 개만 보고 싶다, boardCount에서 page 내용만 불러오기.
-		this.page = page;
-		this.boardCount = boardCount;
+		this.page = page;						// 사용자가 요청한 페이지 번호는 3
+		this.boardCount = boardCount;			// DAO를 이용하여 파악한 총 게시글의 개수 : 930
 		
-		perPage = 15;
-		offset = (page - 1) * perPage;
-		fetch = perPage;
+		perPage = 15;							// 여기 값을 바꾸면 화면에 출력되는 게시글의 개수가 바뀐다 !!
+		offset = (page - 1) * perPage;			// (3 - 1) * 10, 20개의 게시글은 건너뛰고
+		fetch = perPage;						// 그 다음 10개를 화면에 출력한다.
 		
-		pageCount = boardCount / perPage;
-		pageCount += (boardCount % perPage != 0) ? 1 : 0;
-		section = (page - 1) / 10;
-		begin = (section) * 10 + 1;
-		end = begin + 9;
-		prev = section != 0;
-		next = pageCount > end;
-		
-		if(end > pageCount) {
-			end = pageCount;
+		// 하단에 페이지 번호들을 링크로 출력할 때 필요한 요소들
+		pageCount = boardCount / perPage;		// 페이지가 총 몇개인지 파악해야 한다. 게시글 수 / 페이지당 개수 930 / 10
+		pageCount += (boardCount % perPage != 0) ? 1 : 0;	// 나머지가 있으면 1페이지 추가
+		section = (page - 1) / 10;				// (3 - 1) / 10, 0번대 구역(01, 02, 03...)
+		begin = (section) * 10 + 1;				// 0 * 10 + 1, 1페이지부터 ...
+		end = begin + 9;						// 1 + 9, 10페이지까지 하단에 반복문으로 출력한다.
+		prev = section != 0;					// 0번 구역이라면 이전 구역이 없다. 그 외에는 이전구역이 있다.
+		next = pageCount > end;					// 총 페이지 개수가 마지막 페이지번호보다 크면 다음이 있다.
+												// ex) 50(총 페이지 개수) > 50(마지막 페이지 번호)
+		if(end > pageCount) {	// 마지막 페이지 번호가 10단위로 계산된 값보다 작으면
+			end = pageCount;	// 총 페이지 수를 마지막 페이지 번호로 재설정한다.
 			next = false;		// 끝에 도달했기 때문에 다음값이 있을 수가 없다.
 		}
 

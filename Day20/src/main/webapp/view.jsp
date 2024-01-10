@@ -16,6 +16,11 @@
 <a href="${cpath }/board.jsp"><button>목록으로</button></a> --%>
 
 <main>
+	<details>
+		<summary>이전 페이지 주소</summary>
+		<h3>${header.referer }</h3>
+	</details>
+	<c:set var="row" value="${boardDAO.updateViewCount(param.idx) }" />
    <c:set var="dto" value="${boardDAO.selectOne(param.idx) }"/>
    <table id="boardView">
       <tr>
@@ -33,9 +38,11 @@
          </td>
       </tr>
       <tr>
-         <td>
-            ${dto.ipaddr }에서 ${dto.writeDate }에 작성됨
-         </td>
+      	<td>
+      		${dto.ipaddr }에서
+      		<fmt:formatDate value="${dto.writeDate }" pattern="yyyy년 MM월 dd일 a hh시 mm분" />
+      		에 작성됨.
+      	</td>
       </tr>
    </table>
 
