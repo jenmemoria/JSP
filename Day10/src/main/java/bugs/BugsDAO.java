@@ -10,7 +10,8 @@ import java.util.List;
 
 
 public class BugsDAO {
-	// 싱글톤
+	// 싱글톤 : 페이지마다 같은 기능을 하는 서로 다른객체가 생기지 않도록 처리 => 쓰는 이유는 메모리 낭비 방지
+	// 생성자
 	// 멤버 필드
 	private String url="jdbc:oracle:thin:@192.168.1.100:1521:xe";
 	private String user = "c##itbank";
@@ -20,7 +21,6 @@ public class BugsDAO {
 	private PreparedStatement pstmt;
 	private ResultSet rs;
 	
-	// 생성자
 	
 	// 내부 함수
 	// Connection getConnection()
@@ -48,7 +48,7 @@ public class BugsDAO {
 		dto.setAlbum_img(rs.getString("album_img"));
 		dto.setName(rs.getString("name"));
 		dto.setGenre(rs.getString("genre"));
-		dto.setPlaytime(rs.getInt("playtime"));
+		dto.setPlayTime(rs.getInt("playTime"));
 		dto.setLyrics(rs.getString("lyrics"));
 		dto.setIsTitle(rs.getInt("isTitle"));
 		
@@ -57,7 +57,7 @@ public class BugsDAO {
 	// 공개 함수
 	// List<BugsDTO> selectAll() 참고로 맵핑은 select 할 때만 쓴다.
 	// select * from bugs order by artist_name, id
-	public List<BugsDTO> selectAll(String search){
+	public List<BugsDTO> selectAll(String search){ // 전체목록 띄우기 + 검색
 		ArrayList<BugsDTO> list = new ArrayList<>();
 		String sql = "select * from bugs" 
 			    + " where"
@@ -107,6 +107,35 @@ public class BugsDAO {
 	
 	// int insert(BugsDTO dto)
 	// insert into bugs (...) values (?, ...)
+	public int insert(BugsDTO dto) {
+		int row = 0;
+		String sql = "insert into bugs ("
+				+ "		artist_name,"
+				+ "		album_name,"
+				+ "		name,"
+				+ "		genre,"
+				+ "		playTime,"
+				+ "		isTitle,"
+				+ "		lyrics"
+				+ ") values ("
+				+ "		?, ?, ?, ?, ?, ?, ?"
+				+ ")";
+		try {
+			conn=getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, dto.getArtist_name());
+			pstmt.setString(2, dto.getAlbum_name());
+			pstmt.setString(3, dto.getName());
+			pstmt.setString(4, dto.getGenre());
+			pstmt.setInt(5, dto.getPlayTime());
+			pstmt.setInt(6, dto.getIsTitle());
+			pstmt.setString(7, dto.getLyrics());
+			row = pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally { close(); }
+		return row;
+	}
 	
 	// int update(BugsDTO dto)
 	// update bugs set artist_name=?, ... where id = ?
@@ -118,7 +147,7 @@ public class BugsDAO {
 				+ "			album_name = ?,"
 				+ "			name = ?,"
 				+ "			genre = ?,"
-				+ "			playtime = ?,"
+				+ "			playTime = ?,"
 				+ "			isTitle = ?,"
 				+ "			lyrics = ?,"
 				+ "		where"
@@ -130,7 +159,7 @@ public class BugsDAO {
 			pstmt.setString(2, dto.getAlbum_name());
 			pstmt.setString(3, dto.getName());
 			pstmt.setString(4, dto.getGenre());
-			pstmt.setInt(5, dto.getPlaytime());
+			pstmt.setInt(5, dto.getPlayTime());
 			pstmt.setInt(6, dto.getIsTitle());
 			pstmt.setString(7, dto.getLyrics());
 			pstmt.setInt(8, dto.getId());
@@ -143,4 +172,17 @@ public class BugsDAO {
 	
 	// int delete(int id)
 	// delete from bugs where id = ?
+	public int delete(int id) {
+		int row = 0;
+		String sql = "delete from bugs where id = ?";
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, id);
+			row = pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally { close(); }
+		return row;
+	}
 }

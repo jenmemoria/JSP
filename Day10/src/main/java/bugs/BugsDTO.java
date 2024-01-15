@@ -19,7 +19,7 @@ public class BugsDTO {
 	private String album_img;
 	private String name;
 	private String genre;
-	private int playtime;
+	private int playTime;
 	private String lyrics;
 	private int isTitle;
 	
@@ -65,11 +65,11 @@ public class BugsDTO {
 	public void setGenre(String genre) {
 		this.genre = genre;
 	}
-	public int getPlaytime() {
-		return playtime;
+	public int getPlayTime() {
+		return playTime;
 	}
-	public void setPlaytime(int playtime) {
-		this.playtime = playtime;
+	public void setPlayTime(int playTime) {
+		this.playTime = playTime;
 	}
 	public String getLyrics() {
 		return lyrics;
@@ -83,6 +83,8 @@ public class BugsDTO {
 	public void setIsTitle(int isTitle) {
 		this.isTitle = isTitle;
 	}
+	
+	
 	
 	
 }

@@ -73,6 +73,7 @@
 	</form>
 	
 	<jsp:useBean id="ob" class="food.FoodDTO" /> <%-- 빈 객체를 기본 생성자로 생성한다. --%>
+	<%-- 위에 얘는 FoodDTO dto = new FoodDTO();와 같다. --%>
 	<jsp:setProperty property="*" name="ob"/>	 <%-- input name과 필드이름을 맞추면 자동으로 대입 --%>
 	
 	<ul>

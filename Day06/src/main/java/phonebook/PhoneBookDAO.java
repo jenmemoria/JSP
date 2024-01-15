@@ -4,7 +4,6 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.sql.*;
 import oracle.jdbc.driver.OracleDriver;
 
 public class PhoneBookDAO {

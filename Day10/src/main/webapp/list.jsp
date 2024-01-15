@@ -25,6 +25,11 @@
 		color: black;
 		cursor: pointer;
 	}
+	.sb {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
 </style>
 </head>
 <body>
@@ -32,12 +37,18 @@
 <h1>list.jsp</h1>
 <hr>
 
-<form action="list.jsp">
-	<p><input type="search" name="search" placeholder="검색어를 입력하세요"
-			  autofocus value="${param.search }">
-		<input type="submit" value="검색">
-	</p>
-</form>
+<div class="sb">
+	<form action="list.jsp">
+		<p>
+			<input type="search" name="search" placeholder="검색어를 입력하세요"
+				  autofocus value="${param.search }">
+			<input type="submit" value="검색">
+		</p>
+	</form>
+	<div>
+		<a href="add.jsp"><button>추가</button></a>
+	</div>
+</div>
 
 
 
@@ -64,7 +75,7 @@
 				<td><img src="album_img/${dto.album_img }" height="50">
 					${dto.album_name }</td>
 				<td>${dto.name }</td>
-				<td>${dto.playtime }</td>
+				<td>${dto.playTime }</td>
 				<td>
 					<a href="view.jsp?id=${dto.id }"><button>상세조회</button></a>
 					<a href="modify.jsp?id=${dto.id }"><button>수정</button></a>

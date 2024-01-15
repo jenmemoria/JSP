@@ -8,7 +8,5 @@
 	<c:redirect url="/list.jsp" />
 </c:if>
 
-
-
 </body>
 </html>

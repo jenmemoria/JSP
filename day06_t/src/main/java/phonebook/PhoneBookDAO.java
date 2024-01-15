@@ -63,7 +63,7 @@ public class PhoneBookDAO {
 		} catch(SQLIntegrityConstraintViolationException e) {// 무결성 제약조건 위반 예외
 			return 0;
 		} catch (Exception e) {
-			
+			e.printStackTrace();
 		} finally {
 			close();
 		}
